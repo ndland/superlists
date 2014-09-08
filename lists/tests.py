@@ -68,7 +68,7 @@ class NewListTest(TestCase):
 
     def test_saving_a_POST_request(self):
         self.client.post(
-            'lists/new',
+            '/lists/new',
             data={'item_text': 'A new list item'}
         )
         self.assertEqual(Item.objects.count(), 1)
@@ -77,8 +77,9 @@ class NewListTest(TestCase):
 
     def test_redirects_after_post(self):
         response = self.client.post(
-            'lists/new',
+            '/lists/new',
             data={'item_text': 'A new list item'}
         )
+
         self.assertRedirects(response, '/lists/the-only-list-in-the-world/')
 
